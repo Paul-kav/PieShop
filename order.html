@@ -53,7 +53,7 @@
     <header>
       <nav>
         <ul>
-          <li><a href="index.html">Home</a></li>
+          <li><a href="/">Home</a></li>
           <li><a href="pies.html">Pies</a></li>
           <li><a href="contact.html">Contact</a></li>
         </ul>
@@ -76,7 +76,7 @@
           <p class="desc"></p>
         </div>
 
-        <form action="http://localhost:7071/api/post" method="POST">
+        <form action=" " method="POST">
           <input type="hidden" id="pie-order" name="pie-order">
           <input type="hidden" id="location" name="location">
 
@@ -179,57 +179,57 @@
     <footer>
       <nav>
         <ul>
-          <li><a href="index.html">Home</a></li>
+          <li><a href="/">Home</a></li>
           <li><a href="pies.html">Pies</a></li>
           <li><a href="contact.html">Contact</a></li>
         </ul>
       </nav>
     </footer>
     <script type="text/javascript">
-            window.addEventListener("DOMContentLoaded", function(e) {
 
-    let locationBox = document.querySelector("#location");
-    let location = {
-      latitude: "unknown",
-      longitude: "unknown"
-    };
+      window.addEventListener("DOMContentLoaded", function(e) {
 
-    window.navigator.geolocation.getCurrentPosition(
-      function(position) {
-
-        location = {
-          latitude: position.coords.latitude,
-          longitude: position.coords.longitude
+        let locationBox = document.querySelector("#location");
+        let location = {
+          latitude: "unknown",
+          longitude: "unknown"
         };
 
-        locationBox.value = JSON.stringify(location);
-      },
-      function(error) {
-        locationBox.value = JSON.stringify(location);
+        window.navigator.geolocation.getCurrentPosition(
+          function(position) {
+
+            location = {
+              latitude: position.coords.latitude,
+              longitude: position.coords.longitude
+            };
+
+            locationBox.value = JSON.stringify(location);
+          },
+          function(error) {
+            locationBox.value = JSON.stringify(location);
+          });
+
+        const order = localStorage.getItem("order");
+        const pieOrder = JSON.parse(order);
+
+        if (order) {
+          const pie = document.querySelector(".pie");
+          const title = pie.querySelector(".title");
+          const price = pie.querySelector(".price");
+          const desc = pie.querySelector(".desc");
+          const orderInput = document.querySelector("#pie-order");
+
+          title.innerText = pieOrder.title;
+          price.innerText = pieOrder.price;
+          desc.innerText = pieOrder.desc;
+
+          orderInput.value = order;
+
+          const img = pie.querySelector("img");
+          img.setAttribute("src", `images/${pieOrder.id}.png`);
+          img.setAttribute("alt", pieOrder.title);
+        }
       });
-
-    const order = localStorage.getItem("order");
-    const pieOrder = JSON.parse(order);
-
-    if (order) {
-      const pie = document.querySelector(".pie");
-      const title = pie.querySelector(".title");
-      const price = pie.querySelector(".price");
-      const desc = pie.querySelector(".desc");
-      const orderInput = document.querySelector("#pie-order");
-
-      title.innerText = pieOrder.title;
-      price.innerText = pieOrder.price;
-      desc.innerText = pieOrder.desc;
-
-      orderInput.value = order;
-
-      const img = pie.querySelector("img");
-      img.setAttribute("src", `images/${pieOrder.id}.png`);
-      img.setAttribute("alt", pieOrder.title);
-}
-});
-
     </script>
   </body>
 </html>

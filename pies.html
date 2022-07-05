@@ -11,7 +11,7 @@
     <header>
       <nav>
         <ul>
-          <li><a href="index.html">Home</a></li>
+          <li><a href="/">Home</a></li>
           <li><a href="pies.html">Pies</a></li>
           <li><a href="contact.html">Contact</a></li>
         </ul>
@@ -52,7 +52,7 @@
     <footer>
       <nav>
         <ul>
-          <li><a href="index.html">Home</a></li>
+          <li><a href="/">Home</a></li>
           <li><a href="pies.html">Pies</a></li>
           <li><a href="contact.html">Contact</a></li>
         </ul>
@@ -60,8 +60,9 @@
     </footer>
   </body>
   <script>
-    window.addEventListener("DOMContentLoaded",function(e) {
-      const orderButtons = document.querySelectorAll("button[data-order");
+    window.addEventListener("DOMContentLoaded", function(e) {
+      const orderButtons = document.querySelectorAll("button[data-order]");
+
       orderButtons.forEach(function(button) {
         
         button.addEventListener("click", function(e) {
@@ -82,6 +83,6 @@
         });
       });
     });
-    });
   </script>
 </html>
+
